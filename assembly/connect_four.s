@@ -223,6 +223,25 @@ load_tile_coordinates_init:
 	addi $r22, $r0, 324 #size
 	addi $r24, $r0, 17 #x=17
 	addi $r25, $r0, 96 #y=96
+	j load_tile_color_init
+
+load_tile_coordinates:
+	addi $r24, $r24, 1 #x++
+	addi $r25, $r25, -17 #Go up
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	bne $r24, $r21, load_tile_color_init ## not end of table.
+	addi $r30, $r0, 6
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	bne $r25, $r30, load_image_complete
+	add $r0, $r0, $r0 #nop before branch.
+	addi $r24, $r0, 17 # $r24= x = 17
+	addi $r25, $r25, -18 #Go up a row.
 
 load_tile_color_init:
 	lw $r27, 4001($r0) #$r27 get the tile color
@@ -262,24 +281,6 @@ load_tile_color_red:
 	add $r0, $r0, $r0 #nop.
 	j load_image_1 #load tile 1
 
-
-load_tile_coordinates:
-	addi $r24, $r24, 1 #x++
-	addi $r25, $r25, -17 #Go up
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	bne $r24, $r21, load_tile_color_init ## not end of table.
-	addi $r30, $r0, 6
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	bne $r25, $r30, load_image_complete
-	add $r0, $r0, $r0 #nop before branch.
-	addi $r24, $r0, 17 # $r24= x = 17
-	addi $r25, $r25, -18 #Go up a row.
 
 load_image_complete:
 
