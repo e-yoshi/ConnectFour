@@ -1,0 +1,36 @@
+# ECE350 Connect Four
+# Written in Duke ECE350 Assembly
+
+
+# Register Convention
+# $r1, $r2, $r3 are return registers
+# $r5, $r6, $r7, $r8 are argument registers
+
+# $r10 will be input
+# $r11 will be numberRows
+
+
+#IMPLEMENT:
+	# testOccupied Function
+	# readInput Function
+	# 
+
+# All 
+gameLoop:
+	jal readInput # now input var should be in register 10	
+placeLoop: # loop for placing a block
+	jal testOccupied #test if current block is occupied, if occupied, return 1. if no, return 0
+	blt $r0, $r1, skipIncrement # if NOT occupied / $r1 is 0, skip adding to input var
+		addi $r10, $r10, 7 # increment input
+		addi $r11, $r11, 1 # increment numberRows
+		j placeLoop		   # loop back, check if next block above this one is free
+	skipIncrement:
+
+
+# Read Input from the current player, set to 1 through 7
+readInput:
+	
+
+# test if current block is occupied. return 1 if occupied, 0 if not
+testOccupied: 
+	
