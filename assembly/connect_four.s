@@ -1,14 +1,14 @@
 .text
 
-
-
 load_background_init:
 	add $r24, $r0, $r0 # $r24= x = 0
 	add $r25, $r0, $r0 # $r25 = y = 0
-	addi $r28, $r0, 2000 # $r28 = memaddress = 2000
+	addi $r28, $r0, 0 # $r28 = memaddress = 0 = start of background image.
 	add $r29, $r0, $r0 # $r29 = pixel count = 0
 	addi $r23, $r0, 160 #width
-	addi $r22, $r0, 22800 #size
+	addi $r22, $r0, 19200 #size
+	addi $r21, $r0, 143 #global width
+	
 
 load_image_1:
 	add $r0, $r0, $r0 #nop before output.
@@ -92,6 +92,12 @@ load_image_4:
 	add $r24, $r0, $r0 # $r24= x = 0
 	addi $r25, $r25, 1 # y++
 
+load_image_end_1:
+	bne  $r29, $r22, load_image_5 #end, pixel_count!=image size? repeat; else->end
+	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop before output.
+	j load_tile_init #goto next tile.
 
 load_image_5:
 	or $r27, $r26, $r30 # r27 = color 3bit 
@@ -199,16 +205,44 @@ load_image_10:
 	add $r0, $r0, $r0 #nop before output.
 	add $r0, $r0, $r0 #nop before output.
 	add $r0, $r0, $r0 #nop before output.
-	bne  $r24, $r23, load_image_11 #x!=width=160   else...
+	bne  $r24, $r23, load_image_end_2 #x!=width=160   else...
 	add $r24, $r0, $r0 # $r24= x = 0
 	addi $r25, $r25, 1 # y++
 
-load_image_11:
-	bne  $r29, $r22, load_image_1
+load_image_end_2:
+	bne  $r29, $r22, load_image_1 #end, pixel_count!=image size? repeat; else->end
 
 load_tile_init:
-	add $r0, $r0, $r0
+	addi $r28, $r0, 1920 # $r28 = memaddress = 2000
+	add $r29, $r0, $r0 # $r29 = pixel count = 0
+	addi $r23, $r0, 18 #width
+	addi $r22, $r0, 324 #size
 
+load_tile_coordinates_init:
+	addi $r24, $r0, 17 #x=17
+	addi $r25, $r0, 96 #y=96
+	j load_image_1 #load tile 1
+
+load_tile_coordinates:
+	addi $r24, $r24, 1 #x++
+	addi $r25, $r25, -17 #Go up
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	bne $r24, $r21, load_image_1 ## not end of table.
+	addi $r30, $r0, 6
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	bne $r25, $r30, load_image_complete
+	add $r0, $r0, $r0 #nop before branch.
+	addi $r24, $r0, 17 # $r24= x = 17
+	addi $r25, $r25, -18 #Go up a row.
+	
+
+load_image_complete:
 
 
 
