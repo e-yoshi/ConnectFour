@@ -11,28 +11,28 @@ load_background_init:
 	
 
 load_image_1:
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	lw $r30, 3000($r0)  # load mask 0
 	lw $r26, 0($r28) #load color_32
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	or $r27, $r26, $r30 # r27 = color 3bit
 	sra $r27, $r27, 0 #shift 0
 	lw $r30, 3001($r0)   # load mask 1 beforehand
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	custr1 $r24, $r25, $r27 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	bne  $r24, $r23, load_image_2 #x!=width=160   else...
 	add $r24, $r0, $r0 # $r24= x = 0
 	addi $r25, $r25, 1 # y++
@@ -41,16 +41,16 @@ load_image_2:
 	or $r27, $r26, $r30 # r27 = color 3bit 
 	sra $r27, $r27, 3  #shift 3
 	lw $r30, 3002($r0)   # load mask 2 beforehand
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	custr1 $r24, $r25, $r27 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	bne  $r24, $r23, load_image_3 #x!=width=160   else...
 	add $r24, $r0, $r0 # $r24= x = 0
 	addi $r25, $r25, 1 # y++
@@ -60,16 +60,16 @@ load_image_3:
 	or $r27, $r26, $r30 # r27 = color 3bit 
 	sra $r27, $r27, 6  #shift 6
 	lw $r30, 3003($r0)   # load mask 3 beforehand
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	custr1 $r24, $r25, $r27 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	bne  $r24, $r23, load_image_6 #x!=width=160   else...
 	add $r24, $r0, $r0 # $r24= x = 0
 	addi $r25, $r25, 1 # y++
@@ -78,41 +78,42 @@ load_image_4:
 	or $r27, $r26, $r30 # r27 = color 3bit 
 	sra $r27, $r27, 9  #shift 9
 	lw $r30, 3004($r0)   # load mask 4 beforehand
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	custr1 $r24, $r25, $r27 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	bne  $r24, $r23, load_image_5 #x!=width=160   else...
 	add $r24, $r0, $r0 # $r24= x = 0
 	addi $r25, $r25, 1 # y++
 
 load_image_end_1:
 	bne  $r29, $r22, load_image_5 #end, pixel_count!=image size? repeat; else->end
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	j load_tile_init #goto next tile.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	j load_tile_coordinates #goto next tile.
 
 load_image_5:
 	or $r27, $r26, $r30 # r27 = color 3bit 
 	sra $r27, $r27, 12  #shift 12
 	lw $r30, 3005($r0)   # load mask 5 beforehand
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	custr1 $r24, $r25, $r27 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	bne  $r24, $r23, load_image_6 #x!=width=160   else...
 	add $r24, $r0, $r0 # $r24= x = 0
 	addi $r25, $r25, 1 # y++
@@ -121,16 +122,16 @@ load_image_6:
 	or $r27, $r26, $r30 # r27 = color 3bit 
 	sra $r27, $r27, 15  #shift 15
 	lw $r30, 3006($r0)   # load mask 6 beforehand
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	custr1 $r24, $r25, $r27 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	bne  $r24, $r23, load_image_7 #x!=width=160   else...
 	add $r24, $r0, $r0 # $r24= x = 0
 	addi $r25, $r25, 1 # y++
@@ -139,16 +140,16 @@ load_image_7:
 	or $r27, $r26, $r30 # r27 = color 3bit 
 	sra $r27, $r27, 18  #shift 18
 	lw $r30, 3007($r0)   # load mask 7 beforehand
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	custr1 $r24, $r25, $r27 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	bne  $r24, $r23, load_image_8 #x!=width=160   else...
 	add $r24, $r0, $r0 # $r24= x = 0
 	addi $r25, $r25, 1 # y++
@@ -157,16 +158,16 @@ load_image_8:
 	or $r27, $r26, $r30 # r27 = color 3bit 
 	sra $r27, $r27, 21  #shift 21
 	lw $r30, 3008($r0)   # load mask 8 beforehand
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	custr1 $r24, $r25, $r27 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	bne  $r24, $r23, load_image_9 #x!=width=160   else...
 	add $r24, $r0, $r0 # $r24= x = 0
 	addi $r25, $r25, 1 # y++
@@ -176,16 +177,16 @@ load_image_9:
 	or $r27, $r26, $r30 # r27 = color 3bit 
 	sra $r27, $r27, 24  #shift 24
 	lw $r30, 3009($r0)   # load mask 9 beforehand
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	custr1 $r24, $r25, $r27 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	bne  $r24, $r23, load_image_10 #x!=width=160   else...
 	add $r24, $r0, $r0 # $r24= x = 0
 	addi $r25, $r25, 1 # y++
@@ -194,17 +195,17 @@ load_image_9:
 load_image_10:
 	or $r27, $r26, $r30 # r27 = color 3bit 
 	sra $r27, $r27, 27  #shift 27
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	custr1 $r24, $r25, $r27 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
 	addi $r28, $r28, 1 # $r28 = memaddress ++
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
-	add $r0, $r0, $r0 #nop before output.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	bne  $r24, $r23, load_image_end_2 #x!=width=160   else...
 	add $r24, $r0, $r0 # $r24= x = 0
 	addi $r25, $r25, 1 # y++
@@ -212,16 +213,55 @@ load_image_10:
 load_image_end_2:
 	bne  $r29, $r22, load_image_1 #end, pixel_count!=image size? repeat; else->end
 
-load_tile_init:
-	addi $r28, $r0, 1920 # $r28 = memaddress = 2000
+load_tile_coordinates_init:
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	add $r29, $r0, $r0 # $r29 = pixel count = 0
 	addi $r23, $r0, 18 #width
 	addi $r22, $r0, 324 #size
-
-load_tile_coordinates_init:
 	addi $r24, $r0, 17 #x=17
 	addi $r25, $r0, 96 #y=96
+
+load_tile_color_init:
+	lw $r27, 4001($r0) #$r27 get the tile color
+	addi $r30, $r0, 1 #r30=1 
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	bne $r27, $r0, load_tile_color_blue #not equal to 0 else equal to 0
+	addi $r28, $r0, 3010 # $r28 = memaddress = 3010 - white
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	j load_image_1 #load tile 1
+
+
+load_tile_color_blue:
+	bne $r27, $r30, load_tile_color_red #branch if red continue if blue.
+	addi $r28, $r0, 1920 # $r28 = memaddress = 1920 - blue
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	j load_image_1 #load tile 1
+
+	
+load_tile_color_red:
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	addi $r28, $r0, 1953 # $r28 = memaddress = 1953 - red
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	j load_image_1 #load tile 1
+
 
 load_tile_coordinates:
 	addi $r24, $r24, 1 #x++
@@ -230,7 +270,7 @@ load_tile_coordinates:
 	add $r0, $r0, $r0 #nop before branch.
 	add $r0, $r0, $r0 #nop before branch.
 	add $r0, $r0, $r0 #nop before branch.
-	bne $r24, $r21, load_image_1 ## not end of table.
+	bne $r24, $r21, load_tile_color_init ## not end of table.
 	addi $r30, $r0, 6
 	add $r0, $r0, $r0 #nop before branch.
 	add $r0, $r0, $r0 #nop before branch.
@@ -240,7 +280,6 @@ load_tile_coordinates:
 	add $r0, $r0, $r0 #nop before branch.
 	addi $r24, $r0, 17 # $r24= x = 17
 	addi $r25, $r25, -18 #Go up a row.
-	
 
 load_image_complete:
 
