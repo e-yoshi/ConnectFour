@@ -3,16 +3,16 @@
 
 
 # Register Convention
-# $r1, $r3 are return registers
+# $r1 is a return register
 # $r4 is our temporary register that stores 4000+inputVar for load from Table Map
-# $r6, $r7 are argument registers
+# $r6 are argument registers
 # $r9 is current player. 1 is player 1, 2 is player 2
 # $r10 will be input
 # $r11 will be numberRows
 # $r14 is a temporary register that holds 4000 + input offset for load store RESULTS into Table Maps
 # $r15 is Win? If 1, game over. if 0, keep playing
 # $r16 is always the value 1. comes in handy.
-# r2, r5, r8, r12, r13, r17, 18, 19 are temp registers
+# r2, r5, r7, r8, r12, r13, r17, 18, 19 are temp registers
 
 
 
@@ -101,6 +101,16 @@ placeBlock:
 
 # check if game over
 checkWin:
+# 19,  are free temps
+# r2, 3, 5, 7, 8, 12, 13, 17, 18, 19 are temps
+addi $r5, $r0, 1   #r5 is loop, goes from 1 to 21 for vertical checks, on 22 exit.
+addi $r7, $r0, 21
+addi $r8, $r0, 0   
+addi $r12, $r0, 0
+addi $r13, $r0, 0
+addi $r17, $r0, 0
+addi $r18, $r0, 0
+addi $r19, $r0, 0
 	#	First vertical (loops are inclusive at both ends in this pseudo-code):
 	#	for row = 0 to 2:
 	#    	for col = 0 to 6:
@@ -113,44 +123,60 @@ checkWin:
 	# a problem most solutions have when they simplistically start by checking each cell and going 
 	# out in all directions from there. By that, I mean there's no point checking a start row of 3, 
 	# simply because that would involve rows 3, 4, 5 and 6 (the latter which does not exist).
-
-# --> translated to one dimensional loop from 1 to 21. this is the same as the two for loops above
-#		just done in one dimension 
-# are free temps
-# r2, 5, 8, 12, 13, 17, 18, 19 are temps
-addi $r5, $r0, 1   #r5 is loop, goes from 1 to 21 for vertical checks, on 22 exit.
-addi $r8, $r0, 0   
-addi $r12, $r0, 0
-addi $r13, $r0, 0
-addi $r17, $r0, 0
-addi $r18, $r0, 0
-addi $r19, $r0, 0
-
+	# --> translated to one dimensional loop from 1 to 21. this is the same as the two for loops above
+#	just done in one dimension by going from index 1 to index 21
 	checkWinLoop0: 
-		addi $r19, $r5, 4000
-		lw $r12, 1($r19)	#load i
-		lw $r13, 8($r19)	#load i	#load i+7
-		lw $r17, 15($r19)	#load i	#load i+14
-		lw $r18, 22($r19)	#load i	#load i+21
+		addi $r19, $r5, 4000	# run1: r5=1, r19=4001, run2: r5=2, r19 = 4002, ...
+		lw $r12, 0($r19)	#load i
+		lw $r13, 7($r19)	#load i	#load i+7
+		lw $r17, 14($r19)	#load i	#load i+14
+		lw $r18, 21($r19)	#load i	#load i+21
 		# check if all match either player 1 or all player 2
-		and $r2, $r12, $r13
-		and $r8, $r17, $r18
-		and 2,3
-		and res0,res1
-		place in r15, or r15 with others, keep going
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+		# increment vertical loop
+		addi $r5, $r5, 1
+		blt $r7, $r5, endCheckWinLoop0 # if 21 < 22, just did 21 iterations, exit
+		j checkWinLoop0 #not done. loop back
+	endCheckWinLoop0:
+	# reset temp vars
+	addi $r5, $r0, 1   #r5 is loop, goes from 1 to 21 for vertical checks, on 22 exit.
+	addi $r7, $r0, 21
+	addi $r8, $r0, 0   
+	addi $r12, $r0, 0
+	addi $r13, $r0, 0
+	addi $r17, $r0, 0
+	addi $r18, $r0, 0
+	addi $r19, $r0, 0
+
+	#Similarly, for horizontal:
+	#for row = 0 to 5:
+	#    for col = 0 to 3:
+	#        if board[row][col] != 0 and
+	#           board[row][col] == board[row][col+1] and
+	#           board[row][col] == board[row][col+2] and
+	#           board[row][col] == board[row][col+3]:
+	#               return board[row][col]
+
+	# in assembly, check 	1,2,3,4, 
+	#						8,9,10,11
+	#						15,16,17,18,
+	#						22,23,24,25,
+	#						29,30,31,32,
+	#						36,37,38,39
+
+	#IDEA: Check inner four iterations in an unrolled loop. Then increment by 7 again.
+	checkWinLoop1:
+	
 
 
 
 
-#Similarly, for horizontal:
 
-#for row = 0 to 5:
-#    for col = 0 to 3:
-#        if board[row][col] != 0 and
-#           board[row][col] == board[row][col+1] and
-#           board[row][col] == board[row][col+2] and
-#           board[row][col] == board[row][col+3]:
-#               return board[row][col]
+
 #For right and down, followed by right and up:
 
 
