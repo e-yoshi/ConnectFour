@@ -1,6 +1,6 @@
 .text
 
-load_background_init:
+main:
 	add $r24, $r0, $r0 # $r24= x = 0
 	add $r25, $r0, $r0 # $r25 = y = 0
 	addi $r28, $r0, 0 # $r28 = memaddress = 0 = start of background image.
@@ -27,7 +27,7 @@ load_image_1:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
-	custr1 $r24, $r25, $r27 #output to screen
+	custr1 $r27, $r24, $r25 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
 	add $r0, $r0, $r0 #nop.
@@ -45,7 +45,7 @@ load_image_2:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
-	custr1 $r24, $r25, $r27 #output to screen
+	custr1 $r27, $r24, $r25 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
 	add $r0, $r0, $r0 #nop.
@@ -64,7 +64,7 @@ load_image_3:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
-	custr1 $r24, $r25, $r27 #output to screen
+	custr1 $r27, $r24, $r25 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
 	add $r0, $r0, $r0 #nop.
@@ -82,7 +82,7 @@ load_image_4:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
-	custr1 $r24, $r25, $r27 #output to screen
+	custr1 $r27, $r24, $r25 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
 	add $r0, $r0, $r0 #nop.
@@ -108,7 +108,7 @@ load_image_5:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
-	custr1 $r24, $r25, $r27 #output to screen
+	custr1 $r27, $r24, $r25 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
 	add $r0, $r0, $r0 #nop.
@@ -126,7 +126,7 @@ load_image_6:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
-	custr1 $r24, $r25, $r27 #output to screen
+	custr1 $r27, $r24, $r25 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
 	add $r0, $r0, $r0 #nop.
@@ -144,7 +144,7 @@ load_image_7:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
-	custr1 $r24, $r25, $r27 #output to screen
+	custr1 $r27, $r24, $r25 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
 	add $r0, $r0, $r0 #nop.
@@ -162,7 +162,7 @@ load_image_8:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
-	custr1 $r24, $r25, $r27 #output to screen
+	custr1 $r27, $r24, $r25 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
 	add $r0, $r0, $r0 #nop.
@@ -181,7 +181,7 @@ load_image_9:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
-	custr1 $r24, $r25, $r27 #output to screen
+	custr1 $r27, $r24, $r25 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
 	add $r0, $r0, $r0 #nop.
@@ -199,7 +199,7 @@ load_image_10:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
-	custr1 $r24, $r25, $r27 #output to screen
+	custr1 $r27, $r24, $r25 #output to screen
 	addi $r24, $r24, 1 # x++
 	addi $r29, $r29, 1 #pixcount++
 	addi $r28, $r28, 1 # $r28 = memaddress ++
