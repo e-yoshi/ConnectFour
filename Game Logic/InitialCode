@@ -6,16 +6,33 @@
 # $r1, $r2, $r3 are return registers
 # $r5, $r6, $r7, $r8 are argument registers
 
+# $r9 is current player. 0 is player 0, 1 is player 1
 # $r10 will be input
 # $r11 will be numberRows
+
+
+# $r15 is Win? If 1, game over. if 0, keep playing
 
 
 #IMPLEMENT:
 	# testOccupied Function
 	# readInput Function
-	# 
+	# placeBlock
+	# endGame
+	# initGame
+	# checkWin
+	# changePlayer
 
 # All 
+initGame:
+addi $r9, $r0, 1 #currPlayer is 0
+add $r10, $r0, $r0 #initialize inputVar to 0
+add $r11, $r0, $r0 #numberRows init as 0
+
+add $r15, $r0, $r0 #init gameOver to 0. 1 is game over
+
+
+
 gameLoop:
 	jal readInput # now input var should be in register 10	
 placeLoop: # loop for placing a block
@@ -25,7 +42,18 @@ placeLoop: # loop for placing a block
 		addi $r11, $r11, 1 # increment numberRows
 		j placeLoop		   # loop back, check if next block above this one is free
 	skipIncrement:
-
+		jal placeBlock
+		# checkWin(User) -- pass in User as arg, returns 1 if user has won.
+			# after winning, maybe all blocks blink or something. 
+		# set pass-in vars to checkWin
+			# $r9 --> currPlayer
+		jal checkWin
+		# if won, $r15 will be 1. if game NOT over, $r15 is 0
+		bne $r0, $r15, endGame	# if not 0, branch to endGame. $r15 is 1, so game is over!
+		#game NOT over. Change currPlayer
+		jal changePlayer
+		# keep playing the game
+		j gameLoop
 
 # Read Input from the current player, set to 1 through 7
 readInput:
@@ -34,3 +62,49 @@ readInput:
 # test if current block is occupied. return 1 if occupied, 0 if not
 testOccupied: 
 	
+# place a block at given input, used in $r10. RESET input after placeBlock is called
+placeBlock:
+	
+
+# check if game over
+checkWin:
+
+
+#change CurrPlayer
+changePlayer:
+	#if (Current Player == A) 
+		#change Current Player to B
+	#if (Current Player == B) 
+		#change Current Player to A
+	
+	# test if currPlayer is NOT 0, i.e., player is 1. change player to 0.
+	bne $r0, $r9, changePlayerSubLabel
+	# did NOT branch here. that means current player is 0. change player to 1 and exit 
+	addi $r9, $r0, 1
+	jr $r31 #jr return register
+	changePlayerSubLabel: 	#we just branched here because player is 1. change player to 0,return
+	addi $r9, $r0, 0
+	jr $r31 #jr return register
+
+# game is over! 
+endGame: 
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
