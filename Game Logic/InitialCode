@@ -12,7 +12,7 @@
 # $r10 will be input
 # $r11 will be numberRows
 #t r13 is a temporary register 
-# $r12, $r14 are temporary registers that hold 2000, 4000 + input offset for loads and stores into Table Maps
+# $r12, $r14 are temporary registers that hold 2000, 4000 + input offset for load store RESULTS into Table Maps
 # $r15 is Win? If 1, game over. if 0, keep playing
 # $r16 is always the value 1. comes in handy.
 
@@ -29,6 +29,10 @@
 	# personally I think that this is a later step. First get it working. Maybe robustness is not an issue.
 	# we can assume we have smart players that don't try and break our board.
 
+
+# Table Mapping
+# Table Map at 4000 is our map for presence
+# Table Map II at 2000 is our map for which player, once we check the map at 4K
 
 
 # All 
@@ -68,23 +72,30 @@ placeLoop: # loop for placing a block
 readInput:
 	
 
+
+
+	
+
 # test if current block is occupied. return 1 in $r1 if occupied, 0 if not
 testOccupied: 
 	# intuition: load from specified address in TABLE MAP. if 1, block is present.
-	addi $r14, $r10, 4000
-	load $r8, 0($r14)		# either a 0 or 1
-	
-
-	
+	addi $r4, $r10, 4000
+	load $r14, 0($r4)		# either a 0 or 1
+	add $r1, $r0, $r14		# put result into return register. would have directly loaded, but other areas of code need r1 already
 
 # place a block at given input, used in $r10. RESET input after placeBlock is called
 placeBlock:
-
 #WRITE TO A DUPLICATE TABLE MAP
 	
 
+
+
+
 # check if game over
 checkWin:
+	
+
+
 
 
 #change CurrPlayer
