@@ -4,26 +4,24 @@
 
 # Register Convention
 # $r1, $r3 are return registers
-# $r2 is our temporary register that stores 2000+inputVar for load from Table Map II (which player where)
 # $r4 is our temporary register that stores 4000+inputVar for load from Table Map
 # $r6, $r7 are argument registers
-#t $r8 is a temporary register
-# $r9 is current player. 0 is player 0, 1 is player 1
+# $r9 is current player. 1 is player 1, 2 is player 2
 # $r10 will be input
 # $r11 will be numberRows
-#t r13 is a temporary register 
-# $r12, $r14 are temporary registers that hold 2000, 4000 + input offset for load store RESULTS into Table Maps
+# $r14 is a temporary register that holds 4000 + input offset for load store RESULTS into Table Maps
 # $r15 is Win? If 1, game over. if 0, keep playing
 # $r16 is always the value 1. comes in handy.
+# r2, r5, r8, r12, r13, r17, 18, 19 are temp registers
+
+
 
 #IMPLEMENT:
-	# testOccupied Function
 	# readInput Function
 	# placeBlock
 	# endGame
 	# initGame
 	# checkWin
-	# changePlayer
 # ALSO IMPLEMENT
 	# We have numberRows. We can add boundary checking if we feel that we want our design to be robust.
 	# personally I think that this is a later step. First get it working. Maybe robustness is not an issue.
@@ -37,19 +35,19 @@
 
 # All 
 initGame:
-addi $r2, $r0, 2000
 addi $r4, $r0, 4000
-addi $r9, $r0, 1 #currPlayer is 0
-add $r10, $r0, $r0 #initialize inputVar to 0
-add $r11, $r0, $r0 #numberRows init as 0
-add $r15, $r0, $r0 #init gameOver to 0. 1 is game over
+addi $r9, $r0, 1   # currPlayer is 1
+add $r10, $r0, $r0 # initialize inputVar to 0
+add $r11, $r0, $r0 # numberRows init as 0
+add $r15, $r0, $r0 # init gameOver to 0. 1 is game over
+addi $r16, $r0, 1  # $r16 is always value 1. comes in handy.
 
 ###############################################################################################
 ###############################################################################################
 gameLoop:
 	jal readInput # now input var should be in register 10	
 placeLoop: # loop for placing a block
-	jal testOccupied #test if current block is occupied, if occupied, return 1. if no, return 0
+	jal testOccupied #test if current block is occupied, if occupied, return 1, or 2. if no, return 0
 	blt $r0, $r1, skipIncrement # if NOT occupied / $r1 is 0, skip adding to input var
 		addi $r10, $r10, 7 # increment input
 		addi $r11, $r11, 1 # increment numberRows
@@ -84,25 +82,106 @@ readInput:
 
 
 
-# test if current block is occupied. return 1 in $r1 if occupied, 0 if not
+# test if current block is occupied. return 1,2 in $r1 if occupied, 0 if not
 testOccupied: 
-	# intuition: load from specified address in TABLE MAP. if 1, block is present.
+	# intuition: load from specified address in TABLE MAP. if 1,or 2, block is present.
 	addi $r4, $r10, 4000
-	load $r14, 0($r4)		# either a 0 or 1
+	load $r14, 0($r4)		# either a 0,1,or 2
 	add $r1, $r0, $r14		# put result into return register. would have directly loaded, but other areas of code need r1 already
+	jr $r31
 
-# place a block at given input, used in $r10. RESET input after placeBlock is called
+# place a block at given input from $r10. RESET input after placeBlock is called to 100
 placeBlock:
-#WRITE TO A DUPLICATE TABLE MAP
-	
-
-
+	#WRITE TO ORIGINAL TABLE MAP our player 1 or 2
+	# we just previously called testOccupied, so $r4 should still be holding destination address
+	# $r9 is holding currPlayer
+	sw $r9, 0($r4)	# stores 1 if currPlayer 1, 2 if currPlayer 2
+	jr $r31
 
 
 # check if game over
 checkWin:
-	
+	#	First vertical (loops are inclusive at both ends in this pseudo-code):
+	#	for row = 0 to 2:
+	#    	for col = 0 to 6:
+	#        	if board[row][col] != 0 and
+	#           	board[row][col] == board[row+1][col] and
+	#           	board[row][col] == board[row+2][col] and
+	#           	board[row][col] == board[row+3][col]:
+	#              return board[row][col]
+	# This limits the possibilities to only those that don't extend off the edge of the board, 
+	# a problem most solutions have when they simplistically start by checking each cell and going 
+	# out in all directions from there. By that, I mean there's no point checking a start row of 3, 
+	# simply because that would involve rows 3, 4, 5 and 6 (the latter which does not exist).
 
+# --> translated to one dimensional loop from 1 to 21. this is the same as the two for loops above
+#		just done in one dimension 
+# are free temps
+# r2, 5, 8, 12, 13, 17, 18, 19 are temps
+addi $r5, $r0, 1   #r5 is loop, goes from 1 to 21 for vertical checks, on 22 exit.
+addi $r8, $r0, 0   
+addi $r12, $r0, 0
+addi $r13, $r0, 0
+addi $r17, $r0, 0
+addi $r18, $r0, 0
+addi $r19, $r0, 0
+
+	checkWinLoop0: 
+		addi $r19, $r5, 4000
+		lw $r12, 1($r19)	#load i
+		lw $r13, 8($r19)	#load i	#load i+7
+		lw $r17, 15($r19)	#load i	#load i+14
+		lw $r18, 22($r19)	#load i	#load i+21
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13
+		and $r8, $r17, $r18
+		and 2,3
+		and res0,res1
+		place in r15, or r15 with others, keep going
+
+
+
+
+#Similarly, for horizontal:
+
+#for row = 0 to 5:
+#    for col = 0 to 3:
+#        if board[row][col] != 0 and
+#           board[row][col] == board[row][col+1] and
+#           board[row][col] == board[row][col+2] and
+#           board[row][col] == board[row][col+3]:
+#               return board[row][col]
+#For right and down, followed by right and up:
+
+
+
+
+#for row = 0 to 2:
+#    for col = 0 to 3:
+#        if board[row][col] != 0 and
+#           board[row][col] == board[row+1][col+1] and
+#           board[row][col] == board[row+2][col+2] and
+#           board[row][col] == board[row+3][col+3]:
+#               return board[row][col]
+
+#for row = 3 to 5:
+#    for col = 0 to 3:
+#        if board[row][col] != 0 and
+#           board[row][col] == board[row-1][col+1] and
+#           board[row][col] == board[row-2][col+2] and
+#           board[row][col] == board[row-3][col+3]:
+#               return board[row][col]
+
+
+
+
+
+
+
+
+
+
+	
 
 
 
@@ -113,15 +192,15 @@ changePlayer:
 	#if (Current Player == B) 
 		#change Current Player to A
 	
-	# test if currPlayer is NOT 0, i.e., player is 1. change player to 0.
-	bne $r0, $r9, changePlayerSubLabel
-	# did NOT branch here. that means current player is 0. change player to 1 and exit 
+	# test if currPlayer is NOT 1, i.e., player is 2. change player to 1.
+		# $r16 is always the value 1. comes in handy.
+	bne $r16, $r9, changePlayerSubLabel
+		# did NOT branch here. that means current player is 1. change player to 2 and exit 
+	addi $r9, $r0, 2
+	jr $r31 #jr return register
+	changePlayerSubLabel: 	#we just branched here because player is NOT equal to 1... player is 2. change player to 1,return
 	addi $r9, $r0, 1
 	jr $r31 #jr return register
-	changePlayerSubLabel: 	#we just branched here because player is 1. change player to 0,return
-	addi $r9, $r0, 0
-	jr $r31 #jr return register
-
 
 
 # game is over! 
