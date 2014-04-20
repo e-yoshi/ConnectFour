@@ -44,8 +44,8 @@ add $r10, $r0, $r0 #initialize inputVar to 0
 add $r11, $r0, $r0 #numberRows init as 0
 add $r15, $r0, $r0 #init gameOver to 0. 1 is game over
 
-
-
+###############################################################################################
+###############################################################################################
 gameLoop:
 	jal readInput # now input var should be in register 10	
 placeLoop: # loop for placing a block
@@ -67,6 +67,8 @@ placeLoop: # loop for placing a block
 		jal changePlayer
 		# keep playing the game
 		j gameLoop
+# DONE WITH MAIN GAME LOOP. ####################################################################
+###############################################################################################
 
 # Read Input from the current player, set to 1 through 7
 readInput:
@@ -74,7 +76,7 @@ readInput:
 
 
 
-	
+
 
 # test if current block is occupied. return 1 in $r1 if occupied, 0 if not
 testOccupied: 
