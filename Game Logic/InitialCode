@@ -59,9 +59,9 @@ placeLoop: # loop for placing a block
 		# set pass-in vars to checkWin
 			# $r9 --> currPlayer
 		jal checkWin
-		# if won, $r15 will be 1. if game NOT over, $r15 is 0
-		bne $r0, $r15, endGame	# if not 0, branch to endGame. $r15 is 1, so game is over!
-		#game NOT over. Change currPlayer
+		# if won, $r15 will be 1 or 2. if game NOT over, $r15 is 0
+		bne $r0, $r15, endGame	# if not 0, branch to endGame. $r15 is 1 or 2, so game is over!
+		# game NOT over if we reached this. Change currPlayer
 		jal changePlayer
 		# keep playing the game
 		j gameLoop
@@ -211,9 +211,147 @@ addi $r15, $r0, 0
 	endCheckWinLoop1: 
 
 
-	#For right and down, followed by right and up:
+	#For right and up, followed by right and down:
 
+	#for row = 3 to 5:
+	#    for col = 0 to 3:
+	#        if board[row][col] != 0 and
+	#           board[row][col] == board[row-1][col+1] and
+	#           board[row][col] == board[row-2][col+2] and
+	#           board[row][col] == board[row-3][col+3]:
+	#               return board[row][col]
+	# UNROLLING: only 12 cases to test, can do without looping!
+		lw $r12, 15($r4)	#load i+3
+		lw $r13, 23($r4)	#load i	#load i+4
+		lw $r17, 31($r4)	#load i	#load i+5
+		lw $r18, 39($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
+		lw $r12, 8($r4)	#load i+3
+		lw $r13, 16($r4)	#load i	#load i+4
+		lw $r17, 24($r4)	#load i	#load i+5
+		lw $r18, 32($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+
+		lw $r12, 16($r4)	#load i+3
+		lw $r13, 24($r4)	#load i	#load i+4
+		lw $r17, 32($r4)	#load i	#load i+5
+		lw $r18, 40($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+
+		lw $r12, 1($r4)	#load i+3
+		lw $r13, 9($r4)	#load i	#load i+4
+		lw $r17, 17($r4)	#load i	#load i+5
+		lw $r18, 25($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+
+		lw $r12, 9($r4)	#load i+3
+		lw $r13, 17($r4)	#load i	#load i+4
+		lw $r17, 25($r4)	#load i	#load i+5
+		lw $r18, 33($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+
+		lw $r12, 17($r4)	#load i+3
+		lw $r13, 25($r4)	#load i	#load i+4
+		lw $r17, 33($r4)	#load i	#load i+5
+		lw $r18, 41($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+
+		lw $r12, 2($r4)	#load i+3
+		lw $r13, 10($r4)	#load i	#load i+4
+		lw $r17, 18($r4)	#load i	#load i+5
+		lw $r18, 26($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+
+		lw $r12, 10($r4)	#load i+3
+		lw $r13, 18($r4)	#load i	#load i+4
+		lw $r17, 26($r4)	#load i	#load i+5
+		lw $r18, 34($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+
+		lw $r12, 18($r4)	#load i+3
+		lw $r13, 26($r4)	#load i	#load i+4
+		lw $r17, 34($r4)	#load i	#load i+5
+		lw $r18, 42($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+
+		lw $r12, 3($r4)	#load i+3
+		lw $r13, 11($r4)	#load i	#load i+4
+		lw $r17, 19($r4)	#load i	#load i+5
+		lw $r18, 27($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+
+		lw $r12, 11($r4)	#load i+3
+		lw $r13, 19($r4)	#load i	#load i+4
+		lw $r17, 27($r4)	#load i	#load i+5
+		lw $r18, 35($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+
+		lw $r12, 4($r4)	#load i+3
+		lw $r13, 12($r4)	#load i	#load i+4
+		lw $r17, 20($r4)	#load i	#load i+5
+		lw $r18, 28($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
 
 	#for row = 0 to 2:
@@ -224,26 +362,145 @@ addi $r15, $r0, 0
 	#           board[row][col] == board[row+3][col+3]:
 	#               return board[row][col]
 
-	#for row = 3 to 5:
-	#    for col = 0 to 3:
-	#        if board[row][col] != 0 and
-	#           board[row][col] == board[row-1][col+1] and
-	#           board[row][col] == board[row-2][col+2] and
-	#           board[row][col] == board[row-3][col+3]:
-	#               return board[row][col]
+	# UNROLLING: only 12 cases to test, can do without looping!
+		lw $r12, 22($r4)	#load i+3
+		lw $r13, 16($r4)	#load i	#load i+4
+		lw $r17, 10($r4)	#load i	#load i+5
+		lw $r18, 4($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
+		lw $r12, 29($r4)	#load i+3
+		lw $r13, 23($r4)	#load i	#load i+4
+		lw $r17, 17($r4)	#load i	#load i+5
+		lw $r18, 11($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
+		lw $r12, 23($r4)	#load i+3
+		lw $r13, 17($r4)	#load i	#load i+4
+		lw $r17, 11($r4)	#load i	#load i+5
+		lw $r18, 5($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
+		lw $r12, 36($r4)	#load i+3
+		lw $r13, 30($r4)	#load i	#load i+4
+		lw $r17, 24($r4)	#load i	#load i+5
+		lw $r18, 18($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
+		lw $r12, 30($r4)	#load i+3
+		lw $r13, 24($r4)	#load i	#load i+4
+		lw $r17, 18($r4)	#load i	#load i+5
+		lw $r18, 12($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
+		lw $r12, 24($r4)	#load i+3
+		lw $r13, 18($r4)	#load i	#load i+4
+		lw $r17, 12($r4)	#load i	#load i+5
+		lw $r18, 6($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
+		lw $r12, 37($r4)	#load i+3
+		lw $r13, 31($r4)	#load i	#load i+4
+		lw $r17, 25($r4)	#load i	#load i+5
+		lw $r18, 19($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
+		lw $r12, 31($r4)	#load i+3
+		lw $r13, 25($r4)	#load i	#load i+4
+		lw $r17, 19($r4)	#load i	#load i+5
+		lw $r18, 13($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
+		lw $r12, 25($r4)	#load i+3
+		lw $r13, 19($r4)	#load i	#load i+4
+		lw $r17, 13($r4)	#load i	#load i+5
+		lw $r18, 7($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
+		lw $r12, 38($r4)	#load i+3
+		lw $r13, 32($r4)	#load i	#load i+4
+		lw $r17, 26($r4)	#load i	#load i+5
+		lw $r18, 20($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
-	
+		lw $r12, 32($r4)	#load i+3
+		lw $r13, 26($r4)	#load i	#load i+4
+		lw $r17, 20($r4)	#load i	#load i+5
+		lw $r18, 14($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
+		lw $r12, 39($r4)	#load i+3
+		lw $r13, 33($r4)	#load i	#load i+4
+		lw $r17, 27($r4)	#load i	#load i+5
+		lw $r18, 21($r4)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
 
+		# if 0 is less than the result, the result is greater than 0
+		# if the result is greater than 0, it's either 1, or 2. 
+		# --> WINNER! 
+		# otherwise, no winner.
+		# ALREADY WRITTEN IN MAIN BODY! if not 0 in r15, game won!
+		jr $r31	# return
 
 #change CurrPlayer
 changePlayer:
@@ -256,11 +513,11 @@ changePlayer:
 		# $r16 is always the value 1. comes in handy.
 	bne $r16, $r9, changePlayerSubLabel
 		# did NOT branch here. that means current player is 1. change player to 2 and exit 
-	addi $r9, $r0, 2
-	jr $r31 #jr return register
+		addi $r9, $r0, 2
+		jr $r31 #jr return register
 	changePlayerSubLabel: 	#we just branched here because player is NOT equal to 1... player is 2. change player to 1,return
-	addi $r9, $r0, 1
-	jr $r31 #jr return register
+		addi $r9, $r0, 1
+		jr $r31 #jr return register
 
 
 # game is over! 
