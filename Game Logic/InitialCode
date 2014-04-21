@@ -105,12 +105,7 @@ checkWin:
 # r2, 3, 5, 7, 8, 12, 13, 17, 18, 19 are temps
 addi $r5, $r0, 1   #r5 is loop, goes from 1 to 21 for vertical checks, on 22 exit.
 addi $r7, $r0, 21
-addi $r8, $r0, 0   
-addi $r12, $r0, 0
-addi $r13, $r0, 0
-addi $r17, $r0, 0
-addi $r18, $r0, 0
-addi $r19, $r0, 0
+addi $r15, $r0, 0
 	#	First vertical (loops are inclusive at both ends in this pseudo-code):
 	#	for row = 0 to 2:
 	#    	for col = 0 to 6:
@@ -145,12 +140,6 @@ addi $r19, $r0, 0
 	# reset temp vars
 	addi $r5, $r0, 1   #r5 is loop, goes from 1 to 21 for horizontal checks, on 36, exit.
 	addi $r7, $r0, 36	
-	addi $r8, $r0, 0   
-	addi $r12, $r0, 0
-	addi $r13, $r0, 0
-	addi $r17, $r0, 0
-	addi $r18, $r0, 0
-	addi $r19, $r0, 0
 
 	#Similarly, for horizontal:
 	#for row = 0 to 5:
@@ -168,47 +157,80 @@ addi $r19, $r0, 0
 	#						29,30,31,32,
 	#						36,37,38,39
 
-	#IDEA: Check inner four iterations in an unrolled loop. Then increment by 7 again.
+	#IDEA: Check inner FOUR iterations in an unrolled loop. Then increment by 7 again.
 	checkWinLoop1:
 		addi $r19, $r5, 4000	# run1: r5=1, r19=4001
 		lw $r12, 0($r19)	#load i
-		lw $r13, 7($r19)	#load i	#load i+7
-		lw $r17, 14($r19)	#load i	#load i+14
-		lw $r18, 21($r19)	#load i	#load i+21
+		lw $r13, 1($r19)	#load i	#load i+1
+		lw $r17, 2($r19)	#load i	#load i+2
+		lw $r18, 3($r19)	#load i	#load i+3
 		# check if all match either player 1 or all player 2
 		and $r2, $r12, $r13		# check if index 1, 2 are same player
 		and $r8, $r17, $r18		# check if index 3,4 are same player
 		and $r3, $r2, $r8     	# check if res0, res1 are same player
 		#place in r15, or r15 with others, keep going
 		or $r15, $r15, $r3
-		# increment vertical loop
-		addi $r5, $r5, 1
+
+		lw $r12, 1($r19)	#load i+1
+		lw $r13, 2($r19)	#load i	#load i+2
+		lw $r17, 3($r19)	#load i	#load i+3
+		lw $r18, 4($r19)	#load i	#load i+4
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+
+		lw $r12, 2($r19)	#load i+2
+		lw $r13, 3($r19)	#load i	#load i+3
+		lw $r17, 4($r19)	#load i	#load i+4
+		lw $r18, 5($r19)	#load i	#load i+5
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+
+		lw $r12, 3($r19)	#load i+3
+		lw $r13, 4($r19)	#load i	#load i+4
+		lw $r17, 5($r19)	#load i	#load i+5
+		lw $r18, 6($r19)	#load i	#load i+6
+		# check if all match either player 1 or all player 2
+		and $r2, $r12, $r13		# check if index 1, 2 are same player
+		and $r8, $r17, $r18		# check if index 3,4 are same player
+		and $r3, $r2, $r8     	# check if res0, res1 are same player
+		#place in r15, or r15 with others, keep going
+		or $r15, $r15, $r3
+		# increment horizontal loop
+		addi $r5, $r5, 7
+		blt $r7, $r5, endCheckWinLoop1 # if 36 (r7) < 43 (r5), just did all iterations, exit
+		j checkWinLoop1 #not done. loop back
+
+	endCheckWinLoop1: 
+
+
+	#For right and down, followed by right and up:
 
 
 
 
+	#for row = 0 to 2:
+	#    for col = 0 to 3:
+	#        if board[row][col] != 0 and
+	#           board[row][col] == board[row+1][col+1] and
+	#           board[row][col] == board[row+2][col+2] and
+	#           board[row][col] == board[row+3][col+3]:
+	#               return board[row][col]
 
-
-#For right and down, followed by right and up:
-
-
-
-
-#for row = 0 to 2:
-#    for col = 0 to 3:
-#        if board[row][col] != 0 and
-#           board[row][col] == board[row+1][col+1] and
-#           board[row][col] == board[row+2][col+2] and
-#           board[row][col] == board[row+3][col+3]:
-#               return board[row][col]
-
-#for row = 3 to 5:
-#    for col = 0 to 3:
-#        if board[row][col] != 0 and
-#           board[row][col] == board[row-1][col+1] and
-#           board[row][col] == board[row-2][col+2] and
-#           board[row][col] == board[row-3][col+3]:
-#               return board[row][col]
+	#for row = 3 to 5:
+	#    for col = 0 to 3:
+	#        if board[row][col] != 0 and
+	#           board[row][col] == board[row-1][col+1] and
+	#           board[row][col] == board[row-2][col+2] and
+	#           board[row][col] == board[row-3][col+3]:
+	#               return board[row][col]
 
 
 
