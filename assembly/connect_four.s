@@ -28,21 +28,24 @@ load_image_1:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	custr1 $r27, $r24, $r25 #output to screen
-	addi $r24, $r24, 1 # x++
-	addi $r29, $r29, 1 #pixcount++
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	bne  $r24, $r23, load_image_2 #x!=width=160   else...
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r24, $r0, $r0 # $r24= x = 0
-	addi $r25, $r25, 1 # y++
+	addi $r24, $r24, 1 # x++ 24
+	addi $r29, $r29, 1 #pixcount++ 25
+	addi $r24, $r24, 0 #width
+	add $r0, $r0, $r0 #nop. 26
+	add $r0, $r0, $r0 #nop. 27
+	add $r0, $r0, $r0 #nop. 28
+	add $r0, $r0, $r0 #nop. 28
+	bne  $r24, $r23, load_image_2 #x!=width=160   else... 29
+	addi $r24, $r24, 0 #width
+	add $r0, $r0, $r0 #nop. 30
+	add $r0, $r0, $r0 #nop.31
+	add $r0, $r0, $r0 #nop.32
+	add $r0, $r0, $r0 #nop.33
+	add $r24, $r0, $r0 # $r24= x = 0 34
+	addi $r25, $r25, 1 # y++35
 
 load_image_2:
-	and $r27, $r26, $r30 # r27 = color 3bit 
+	and $r27, $r26, $r30 # r27 = color 3bit 36
 	sra $r27, $r27, 3  #shift 3
 	lw $r30, 3002($r0)   # load mask 2 beforehand
 	add $r0, $r0, $r0 #nop.
@@ -78,7 +81,7 @@ load_image_3:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
-	bne  $r24, $r23, load_image_6 #x!=width=160   else...
+	bne  $r24, $r23, load_image_4 #x!=width=160   else...
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
@@ -260,6 +263,7 @@ load_image_end_2:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
+	j main
 
 load_tile_coordinates_init:
 	add $r0, $r0, $r0 #nop.
@@ -355,7 +359,151 @@ load_image_complete:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
-
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	j main
 
 
 .data
