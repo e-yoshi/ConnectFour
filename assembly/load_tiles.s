@@ -31,6 +31,20 @@
 # Table Map at 4000 is our map. 4001-->4042,
 # 0 if nobody, 1 if player 1, 2 if player 2 at said memory location
 
+
+## DEBUGGING ##
+#addi $r0, $r0, 0
+#addi $r0, $r0, 0
+#addi $r0, $r0, 0
+#addi $r0, $r0, 0
+#sw $r16, 4021($r0)
+#jal printScreen
+#addi $r0, $r0, 0
+#addi $r0, $r0, 0
+#addi $r0, $r0, 0
+#addi $r0, $r0, 0
+## DEBUGGING ##
+
 # All 
 main:
 
@@ -42,54 +56,15 @@ add $r11, $r0, $r0 # numberRows init as 0
 add $r15, $r0, $r0 # init gameOver to 0. 1 is game over
 addi $r16, $r0, 1  # $r16 is always value 1. comes in handy.
 
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4020($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
 ###############################################################################################
 ###############################################################################################
 gameLoop:
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4021($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
+
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	jal readInput # now input var should be in register 10	
-
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4034($r0)
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
-
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -122,18 +97,6 @@ placeLoop: # loop for placing a block
 		addi $r0, $r0, 0
 
 skipIncrement:
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4022($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
 		jal placeBlock
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -180,21 +143,6 @@ readInput:
 	# $r6 will be input FROM PS2
 	# put result into $r10
 	# reset $r6 
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4032($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
-
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 ## DEBUGGING ##
@@ -202,8 +150,8 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r16, 4015($r16)
-addi $r16, $r16, 1
+sw $r16, 4001($r12)
+addi $r12, $r12, 1
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
