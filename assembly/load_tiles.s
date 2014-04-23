@@ -87,7 +87,7 @@ placeLoop: # loop for placing a block
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-	blt $r1, $r16, skipIncrement
+	bne $r1, $r0, skipIncrement
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
