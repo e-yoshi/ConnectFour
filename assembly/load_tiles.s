@@ -202,16 +202,14 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r16, 4015($r6)
+sw $r16, 4015($r16)
+addi $r16, $r16, 1
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 #DEBUGGING#
-addi $r16, $r16, 1
-#DEBUGGING#
-addi $r0, $r0, 0
-## DEBUGGING ##
+	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	blt $r6, $r16, readInput
