@@ -145,18 +145,6 @@ readInput:
 	# reset $r6 
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4001($r12)
-addi $r12, $r12, 1
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-#DEBUGGING#
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -170,7 +158,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r16, 4023($r0)
+sw $r16, 4001($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -178,13 +166,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 ## DEBUGGING ##
 	# Only reach this if r6 is NOT 0 --> has a value!
-	lw $r6, 2048($r6)
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-
-	addi $r10, $r6, 0
+	lw $r10, 2048($r6)
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
