@@ -143,22 +143,7 @@ retMain2:
 		addi $r0, $r0, 0
 
 
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r15, 4041($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
-
 retMain3:
-
 ## DEBUGGING ##
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -1152,8 +1137,25 @@ changePlayer:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
-		# did NOT branch here. that means current player is 1. change player to 2 and exit 
-		addi $r9, $r0, 1
+		# did NOT branch here. that means current player is 1
+
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r0, 4036($r0)
+sw $r16, 4037($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
+
+		addi $r9, $r0, 2
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -1163,8 +1165,22 @@ changePlayer:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
+
 changePlayerSubLabel: 	#we just branched here because player is NOT equal to 1... player is 2. change player to 1,return
-		addi $r9, $r0, 2
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4036($r0)
+sw $r17, 4037($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+		addi $r9, $r0, 1
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -1599,6 +1615,11 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 ## DEBUGGING ##
 
+j endGame
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
 ###############################################################################################
 ###############################################################################################
 
