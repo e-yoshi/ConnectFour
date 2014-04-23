@@ -64,10 +64,13 @@ gameLoop:
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-	jal readInput # now input var should be in register 10	
+	j readInput # now input var should be in register 10	
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+retMain0:
+	
 
 ## DEBUGGING ##
 addi $r0, $r0, 0
@@ -82,7 +85,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 ## DEBUGGING ##
 
-	
+
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 placeLoop: # loop for placing a block
@@ -224,6 +227,19 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 ## DEBUGGING ##
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r10, 4030($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
 	# now we test if enter has been pressed
 	# if NOT equal to 5A (enter), loop back
 	addi $r12, $r0, 90
@@ -236,7 +252,7 @@ addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-	jr $r31
+	j retMain0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
