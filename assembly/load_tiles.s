@@ -169,9 +169,12 @@ addi $r0, $r0, 0
 ## DEBUGGING ##
 
 
-		jal placeBlock
+		j placeBlock
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+retMain2:
 
 ## DEBUGGING ##
 addi $r0, $r0, 0
@@ -193,9 +196,12 @@ addi $r0, $r0, 0
 			# after winning, maybe all blocks blink or something. 
 		# set pass-in vars to checkWin
 			# $r9 --> currPlayer
-		jal checkWin
+		j checkWin
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+retMain3:
 
 ## DEBUGGING ##
 addi $r0, $r0, 0
@@ -233,9 +239,12 @@ addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		# game NOT over if we reached this. Change currPlayer
-		jal changePlayer
+		j changePlayer
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+retMain4:
 
 ## DEBUGGING ##
 addi $r0, $r0, 0
@@ -412,7 +421,7 @@ addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-	jr $r31
+	j retMain2
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -1256,7 +1265,7 @@ addi $r0, $r0, 0
 		# --> WINNER! 
 		# otherwise, no winner.
 		# ALREADY WRITTEN IN MAIN BODY! if not 0 in r15, game won!
-		jr $r31	# return
+		j retMain3	# return
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -1284,7 +1293,7 @@ changePlayer:
 		addi $r0, $r0, 0
 	changePlayerSubLabel: 	#we just branched here because player is NOT equal to 1... player is 2. change player to 1,return
 		addi $r9, $r0, 1
-		jr $r31 #jr return register
+		j retMain4
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
