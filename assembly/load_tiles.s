@@ -1,17 +1,26 @@
 .text
 
-main:
-#	add $r24, $r0, $r0 # $r24= x = 0
-#	add $r25, $r0, $r0 # $r25 = y = 0
-#	addi $r28, $r0, 0 # $r28 = memaddress = 0 = start of background image.
-##	addi $r23, $r0, 160 #width
-#	addi $r22, $r0, 19200 #size
-	addi $r21, $r0, 143 #global width
+#MAIN: Initialize parameters
+# Description of parameters and registers
+# r19 -> Current tile number. Goes from 1 to 42.
+# r20 -> Width in pixels of the dmem mapped tile. 18px
+# r21 -> Right edge of table x position. 143 pixels
+# r22 -> Total image size of a tile. 324 pixels
+# r23 -> Line break x value. x_break = x_corner + 18
+# r24 -> X coordinate
+# r25 -> Y coordinate
+# r26 -> Color array of 32bits
+# r27 -> Color. 3 bits. 
+# r28 -> Memory address from which the color array is read
+# 9 -> Counter for the number of pixels of the tile that were displayed.
+# r30 -> Bitmask for the color value.
 
+main:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
+	addi $r21, $r0, 143 #table edge
 	addi $r20, $r0, 18 #width
 	add $r29, $r0, $r0 # $r29 = pixel count = 0
 	addi $r22, $r0, 324 #size
@@ -24,7 +33,104 @@ main:
 	add $r23, $r24, $r20 #stopping x = x_initial + width
 	addi $r19, $r0, 4001 #current tile address.
 	j load_tile_color
+
+load_tile_coordinates:
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r24, $r24, $r20 #Right 18
+	sub $r25, $r25, $r20 #Up 18
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r23, $r24, $r20 #stopping x = x_initial + width
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	bne $r24, $r21, load_tile_color ## not end of table else go up another row.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	addi $r24, $r0, 17 #x=17 go back with x = 17 New line
+	sub $r25, $r25, $r20 #Up 18
+	add $r23, $r24, $r20 #stopping x = x_initial + width
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	addi $r30, $r0, 6
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	sub $r30, $r30, $r20 #6-18
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	add $r0, $r0, $r0 #nop before branch.
+	bne $r25, $r30, load_tile_color 
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop. 
+	j load_image_complete
+
+load_tile_color:
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	lw $r27, 0($r19) #$r27 get the tile color
+	addi $r19, $r19, 1 #current tile++
+	addi $r30, $r0, 1 #r30=1 
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	bne $r27, $r0, load_tile_color_blueorred #not equal to 0 else equal to 0
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	addi $r28, $r0, 3010 # $r28 = memaddress = 3010 - white
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	j load_image_1 #load tile 1
+
+load_tile_color_blueorred:
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	bne $r27, $r30, load_tile_color_red #branch if red continue if blue.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	addi $r28, $r0, 1920 # $r28 = memaddress = 1920 - blue
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	j load_image_1 #load tile 1
 	
+load_tile_color_red:
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	addi $r28, $r0, 1953 # $r28 = memaddress = 1953 - red
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	j load_image_1 #load tile 1
 
 load_image_1:
 	add $r0, $r0, $r0 #nop.
@@ -79,7 +185,6 @@ load_image_2:
 	add $r0, $r0, $r0 #nop.
 	sub $r24, $r24, $r20 # Go back to x_initial by subtracting the width from the current position
 	addi $r25, $r25, 1 # y++
-
 
 load_image_3:
 	and $r27, $r26, $r30 # r27 = color 3bit 
@@ -230,7 +335,6 @@ load_image_8:
 	sub $r24, $r24, $r20 # Go back to x_initial by subtracting the width from the current position
 	addi $r25, $r25, 1 # y++
 
-
 load_image_9:
 	and $r27, $r26, $r30 # r27 = color 3bit 
 	sra $r27, $r27, 24  #shift 24
@@ -252,7 +356,6 @@ load_image_9:
 	add $r0, $r0, $r0 #nop.
 	sub $r24, $r24, $r20 # Go back to x_initial by subtracting the width from the current position
 	addi $r25, $r25, 1 # y++
-
 
 load_image_10:
 	and $r27, $r26, $r30 # r27 = color 3bit 
@@ -288,108 +391,6 @@ load_image_end_2:
 	add $r0, $r0, $r0 #nop.
 	add $r0, $r0, $r0 #nop.
 	j main
-
-
-load_tile_coordinates:
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r24, $r24, $r20 #Right 18
-	sub $r25, $r25, $r20 #Up 18
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r23, $r24, $r20 #stopping x = x_initial + width
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	bne $r24, $r21, load_tile_color ## not end of table else go up another row.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	addi $r24, $r0, 17 #x=17 go back with x = 17 New line
-	sub $r25, $r25, $r20 #Up 18
-	add $r23, $r24, $r20 #stopping x = x_initial + width
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	addi $r30, $r0, 6
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	sub $r30, $r30, $r20 #6-18
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	add $r0, $r0, $r0 #nop before branch.
-	bne $r25, $r30, load_tile_color 
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop. 
-	j load_image_complete
-
-load_tile_color:
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	lw $r27, 0($r19) #$r27 get the tile color
-	addi $r19, $r19, 1 #current tile++
-	addi $r30, $r0, 1 #r30=1 
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	bne $r27, $r0, load_tile_color_blueorred #not equal to 0 else equal to 0
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	addi $r28, $r0, 3010 # $r28 = memaddress = 3010 - white
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	j load_image_1 #load tile 1
-
-
-load_tile_color_blueorred:
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	bne $r27, $r30, load_tile_color_red #branch if red continue if blue.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	addi $r28, $r0, 1920 # $r28 = memaddress = 1920 - blue
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	j load_image_1 #load tile 1
-
-	
-load_tile_color_red:
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	addi $r28, $r0, 1953 # $r28 = memaddress = 1953 - red
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	add $r0, $r0, $r0 #nop.
-	j load_image_1 #load tile 1
-
 
 load_image_complete:
 	add $r0, $r0, $r0 #nop.
