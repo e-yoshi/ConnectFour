@@ -468,7 +468,7 @@ placeLoop: # loop for placing a block
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-	blt $r0, $r1, skipIncrement # if NOT occupied / $r1 is 0, skip adding to input var
+	blt $r0, $r1, skipIncrement # if NOT occupied OR $r1 is 0, skip adding to input var
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
