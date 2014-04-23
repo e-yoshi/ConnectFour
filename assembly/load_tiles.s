@@ -468,7 +468,7 @@ placeLoop: # loop for placing a block
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-	blt $r0, $r1, skipIncrement # if NOT occupied OR $r1 is 0, skip adding to input var
+	blt $r0, $r1, skipIncrement
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -484,7 +484,8 @@ placeLoop: # loop for placing a block
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
-	skipIncrement:
+
+skipIncrement:
 		jal placeBlock
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -554,7 +555,7 @@ readInput:
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 
-	enterPress:
+enterPress:
 	# now we test if enter has been pressed
 	# if NOT equal to 5A (enter), loop back
 	addi $r12, $r0, 90
@@ -649,7 +650,7 @@ addi $r15, $r0, 0
 	# simply because that would involve rows 3, 4, 5 and 6 (the latter which does not exist).
 	# --> translated to one dimensional loop from 1 to 21. this is the same as the two for loops above
 #	just done in one dimension by going from index 1 to index 21
-	checkWinLoop0: 
+checkWinLoop0: 
 		addi $r19, $r5, 4000	# run1: r5=1, r19=4001, run2: r5=2, r19 = 4002, ...
 			addi $r0, $r0, 0
 			addi $r0, $r0, 0
@@ -693,7 +694,7 @@ addi $r15, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
-	endCheckWinLoop0:
+endCheckWinLoop0:
 	# reset temp vars
 	addi $r5, $r0, 1   #r5 is loop, goes from 1 to 21 for horizontal checks, on 36, exit.
 	addi $r7, $r0, 36	
@@ -715,7 +716,7 @@ addi $r15, $r0, 0
 	#						36,37,38,39
 
 	#IDEA: Check inner FOUR iterations in an unrolled loop. Then increment by 7 again.
-	checkWinLoop1:
+checkWinLoop1:
 		addi $r19, $r5, 4000	# run1: r5=1, r19=4001
 		lw $r12, 0($r19)	#load i
 		lw $r13, 1($r19)	#load i	#load i+1
@@ -825,7 +826,7 @@ addi $r15, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 
-	endCheckWinLoop1: 
+endCheckWinLoop1: 
 
 
 	#For right and up, followed by right and down:
