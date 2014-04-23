@@ -392,7 +392,15 @@ load_tile_color_red:
 
 
 load_image_complete:
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 	j main
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
+	add $r0, $r0, $r0 #nop.
 
 
 .data
