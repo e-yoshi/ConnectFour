@@ -437,6 +437,7 @@ load_image_complete:
 
 # All 
 initGame:
+
 addi $r4, $r0, 4000
 addi $r6, $r0, 0
 addi $r9, $r0, 1   # currPlayer is 1
@@ -445,6 +446,11 @@ add $r11, $r0, $r0 # numberRows init as 0
 add $r15, $r0, $r0 # init gameOver to 0. 1 is game over
 addi $r16, $r0, 1  # $r16 is always value 1. comes in handy.
 
+## DEBUGGING ##
+
+sw $r9, 4020($r0)
+
+## DEBUGGING ##
 
 ###############################################################################################
 ###############################################################################################
