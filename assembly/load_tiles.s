@@ -70,6 +70,13 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 ## DEBUGGING ##
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	jal readInput # now input var should be in register 10	
+
+
 ## DEBUGGING ##
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -81,11 +88,8 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 ## DEBUGGING ##
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	jal readInput # now input var should be in register 10	
+
+
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -176,6 +180,20 @@ readInput:
 	# $r6 will be input FROM PS2
 	# put result into $r10
 	# reset $r6 
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4032($r0)
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
+
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
