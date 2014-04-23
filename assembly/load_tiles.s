@@ -130,6 +130,8 @@ skipIncrement:
 retMain2:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
 		# checkWin(User) -- pass in User as arg, returns 1 if user has won.
 			# after winning, maybe all blocks blink or something. 
 		# set pass-in vars to checkWin
@@ -171,6 +173,21 @@ retMain3:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
+
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4028($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
 retMain4:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -182,6 +199,21 @@ retMain4:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
+
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4007($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
 # DONE WITH MAIN GAME LOOP. ####################################################################
 ###############################################################################################
 
@@ -235,17 +267,7 @@ enterPress:
 # test if current block is occupied. return 1,2 in $r1 if occupied, 0 if not
 testOccupied: 
 	# intuition: load from specified address in TABLE MAP. if 1,or 2, block is present.
-	addi $r4, $r10, 4000
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	lw $r14, 0($r4)		# either a 0,1,or 2
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	add $r1, $r0, $r14		# put result into return register. would have directly loaded, but other areas of code need r1 already
+	lw $r1, 4000($r10)		# either a 0,1,or 2
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -261,7 +283,7 @@ placeBlock:
 	#WRITE TO ORIGINAL TABLE MAP our player 1 or 2
 	# we just previously called testOccupied, so $r4 should still be holding destination address
 	# $r9 is holding currPlayer
-	sw $r9, 0($r4)	# stores 1 if currPlayer 1, 2 if currPlayer 2
+	sw $r9, 4000($r10)	# stores 1 if currPlayer 1, 2 if currPlayer 2
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
