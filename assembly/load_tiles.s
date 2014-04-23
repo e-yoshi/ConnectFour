@@ -213,37 +213,6 @@ addi $r0, $r0, 0
 # Read Input from the current player, set to 1 through 7
 readInput:
 	addi $r10, $r0, 0
-fixEnter:
-	addi $r8, $r0, 90
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	sub $r12, $r6, $r8
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	blt $r12, $r0, fixedEnter
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	j fixEnter
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-fixedEnter:
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
 readInput0:
 	# $r6 will be input FROM PS2
 	# put result into $r10
@@ -260,6 +229,11 @@ readInput0:
 	addi $r0, $r0, 0
 	# Only reach this if r6 is NOT 0 --> has a value!
 	lw $r10, 2048($r6)
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	blt $r10, $r16, readInput0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
