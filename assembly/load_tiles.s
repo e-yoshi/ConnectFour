@@ -220,13 +220,13 @@ fixEnter:
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-	sub $r17, $r6, $r8
+	sub $r12, $r6, $r8
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-	blt $r17, $r0, fixedEnter
+	blt $r12, $r0, fixedEnter
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
