@@ -47,7 +47,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r9, 4020($r0)
+sw $r16, 4020($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -63,7 +63,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r9, 4021($r0)
+sw $r16, 4021($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -112,7 +112,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r9, 4022($r0)
+sw $r16, 4022($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -179,7 +179,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r9, 4023($r0)
+sw $r16, 4023($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -205,7 +205,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r9, 4024($r0)
+sw $r16, 4024($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -239,7 +239,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r9, 4025($r0)
+sw $r16, 4025($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -275,7 +275,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r9, 4026($r0)
+sw $r16, 4026($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -309,7 +309,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r9, 4027($r0)
+sw $r16, 4027($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -353,7 +353,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r9, 4028($r0)
+sw $r16, 4028($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -431,7 +431,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r9, 4029($r0)
+sw $r16, 4029($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -840,7 +840,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r9, 4030($r0)
+sw $r16, 4030($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
