@@ -213,7 +213,37 @@ addi $r0, $r0, 0
 # Read Input from the current player, set to 1 through 7
 readInput:
 	addi $r10, $r0, 0
-	addi $r6, $r0, 0
+fixEnter:
+	addi $r8, $r0, 90
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	sub $r17, $r6, $r8
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	blt $r17, $r0, fixedEnter
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	j fixEnter
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+fixedEnter:
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
 readInput0:
 	# $r6 will be input FROM PS2
 	# put result into $r10
