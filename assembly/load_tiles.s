@@ -159,6 +159,20 @@ addi $r0, $r0, 0
 
 retMain3:
 
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r15, 4039($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
+
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		# if won, $r15 will be 1 or 2. if game NOT over, $r15 is 0
@@ -1559,7 +1573,18 @@ load_image_complete:
 # game is over! 
 endGame: 
 	
-
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4006($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
 
 ###############################################################################################
 ###############################################################################################
