@@ -5,7 +5,7 @@
 
 # Register Convention
 # $r1 is a return register
-# $r4 is our temporary register that stores 4000+inputVar for load from Table Map
+# $r4 is our temporary register that stores 4000
 # $r6 is PS2 INPUT
 # $r9 is current player. 1 is player 1, 2 is player 2
 # $r10 will be input
@@ -15,16 +15,6 @@
 # $r16 is always the value 1. comes in handy.
 # r2, r5, r7, r8, r12, r13, r17, 18, 19 are temp registers
 
-
-
-#IMPLEMENT:
-	# readInput Function
-	# placeBlock
-	# endGame
-# ALSO IMPLEMENT
-	# We have numberRows. We can add boundary checking if we feel that we want our design to be robust.
-	# personally I think that this is a later step. First get it working. Maybe robustness is not an issue.
-	# we can assume we have smart players that don't try and break our board.
 
 
 # Table Mapping
@@ -51,9 +41,8 @@ main:
 addi $r4, $r0, 4000
 addi $r6, $r0, 0
 addi $r9, $r0, 1   # currPlayer is 1
-add $r10, $r0, $r0 # initialize inputVar to 0
-add $r11, $r0, $r0 # numberRows init as 0
-add $r15, $r0, $r0 # init gameOver to 0. 1 is game over
+addi $r10, $r0, 0 # initialize inputVar to 0
+addi $r15, $r0, 0 # init gameOver to 0. 1 is game over
 addi $r16, $r0, 1  # $r16 is always value 1. comes in handy.
 
 ###############################################################################################
@@ -92,24 +81,19 @@ placeLoop: # loop for placing a block
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-	j testOccupied #test if current block is occupied, if occupied, return 1, or 2. if no, return 0
+	# test if current block is occupied, if occupied, return 1, or 2. if no, return 0 in $r1
+	lw $r1, 4000($r10)		# either a 0,1,or 2
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-retMain1:
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	blt $r0, $r1, skipIncrement
+	blt $r1, $r16, skipIncrement
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 
 		addi $r10, $r10, 7 # increment input
-		addi $r11, $r11, 1 # increment numberRows
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -212,20 +196,6 @@ retMain4:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4007($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
 # DONE WITH MAIN GAME LOOP. ####################################################################
 ###############################################################################################
 
@@ -271,20 +241,6 @@ enterPress:
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	j retMain0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-
-# test if current block is occupied. return 1,2 in $r1 if occupied, 0 if not
-testOccupied: 
-	# intuition: load from specified address in TABLE MAP. if 1,or 2, block is present.
-	lw $r1, 4000($r10)		# either a 0,1,or 2
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	j retMain1
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
