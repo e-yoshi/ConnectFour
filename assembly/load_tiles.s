@@ -172,6 +172,19 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 ## DEBUGGING ##
 
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4013($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
 
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -1145,7 +1158,7 @@ changePlayer:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
-		jr $r31 #jr return register
+		j retMain4
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
