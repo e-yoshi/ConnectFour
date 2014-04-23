@@ -198,6 +198,19 @@ addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4025($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
 	addi $r6, $r0, 0
 	jr $r31
 	addi $r0, $r0, 0
