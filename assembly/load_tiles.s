@@ -74,7 +74,42 @@ placeLoop: # loop for placing a block
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
+
+
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r9, 4041($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
+
 	jal testOccupied #test if current block is occupied, if occupied, return 1, or 2. if no, return 0
+
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r9, 4040($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
+
+
+
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -153,18 +188,6 @@ readInput:
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4001($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
 	# Only reach this if r6 is NOT 0 --> has a value!
 	lw $r10, 2048($r6)
 	addi $r0, $r0, 0
@@ -178,7 +201,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r16, 4024($r0)
+sw $r9, 4042($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -197,21 +220,6 @@ addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4025($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
-	addi $r6, $r0, 0
 	jr $r31
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
