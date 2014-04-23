@@ -9,7 +9,7 @@
 # $r6 is PS2 INPUT
 # $r9 is current player. 1 is player 1, 2 is player 2
 # $r10 will be input
-# $r11 will be numberRows
+# $r11 will be a delay register
 # $r14 is a temporary register that holds 4000 + input offset for load store RESULTS into Table Maps
 # $r15 is Win? If 1, game over. if 0, keep playing
 # $r16 is always the value 1. comes in handy.
@@ -105,7 +105,10 @@ placeLoop: # loop for placing a block
 		addi $r0, $r0, 0
 
 skipIncrement:
-
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
 		j placeBlock
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -171,7 +174,10 @@ addi $r0, $r0, 0
 		addi $r0, $r0, 0
 
 
+retMain4:
+
 ## DEBUGGING ##
+addi $r11, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -184,7 +190,6 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 ## DEBUGGING ##
 
-retMain4:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -207,6 +212,9 @@ retMain4:
 ###############################################################################################
 # Read Input from the current player, set to 1 through 7
 readInput:
+	addi $r10, $r0, 0
+	addi $r6, $r0, 0
+readInput0:
 	# $r6 will be input FROM PS2
 	# put result into $r10
 	# reset $r6 
@@ -215,7 +223,7 @@ readInput:
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-	blt $r6, $r16, readInput
+	blt $r6, $r16, readInput0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -1074,6 +1082,10 @@ addi $r0, $r0, 0
 		# --> WINNER! 
 		# otherwise, no winner.
 		# ALREADY WRITTEN IN MAIN BODY! if not 0 in r15, game won!
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
 		j retMain3	# return
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -1082,6 +1094,7 @@ addi $r0, $r0, 0
 
 #change CurrPlayer
 changePlayer:
+	addi $r7, $r0, 60000
 	#if (Current Player == A) 
 		#change Current Player to B
 	#if (Current Player == B) 
@@ -1116,7 +1129,23 @@ addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
-		j retMain4
+
+wait0:
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r11, $r11, 1
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		blt $r7, $r11, retMain4
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		j wait0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -1141,7 +1170,26 @@ addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
-		j retMain4
+wait1:
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r11, $r11, 1
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		blt $r7, $r11, retMain4
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		j wait1
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
