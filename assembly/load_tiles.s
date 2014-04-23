@@ -85,7 +85,8 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 ## DEBUGGING ##
 
-
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 placeLoop: # loop for placing a block
@@ -112,20 +113,7 @@ addi $r0, $r0, 0
 
 	jal testOccupied #test if current block is occupied, if occupied, return 1, or 2. if no, return 0
 retMain1:
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r9, 4040($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
+#WE GOT HERE#WE GOT HERE#WE GOT HERE#WE GOT HERE#WE GOT HERE#WE GOT HERE#WE GOT HERE#
 
 
 
@@ -138,6 +126,21 @@ addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4038($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
+
 		addi $r10, $r10, 7 # increment input
 		addi $r11, $r11, 1 # increment numberRows
 		addi $r0, $r0, 0
@@ -151,9 +154,39 @@ addi $r0, $r0, 0
 		addi $r0, $r0, 0
 
 skipIncrement:
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4037($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
+
 		jal placeBlock
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4036($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
+
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		# checkWin(User) -- pass in User as arg, returns 1 if user has won.
@@ -163,18 +196,61 @@ skipIncrement:
 		jal checkWin
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4034($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		# if won, $r15 will be 1 or 2. if game NOT over, $r15 is 0
 		bne $r0, $r15, endGame	# if not 0, branch to endGame. $r15 is 1 or 2, so game is over!
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4033($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		# game NOT over if we reached this. Change currPlayer
 		jal changePlayer
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4032($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
+
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		# keep playing the game
@@ -288,6 +364,21 @@ addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
+
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4039($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
 	j retMain1
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
