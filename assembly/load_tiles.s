@@ -43,19 +43,33 @@ add $r15, $r0, $r0 # init gameOver to 0. 1 is game over
 addi $r16, $r0, 1  # $r16 is always value 1. comes in handy.
 
 ## DEBUGGING ##
-
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
 sw $r9, 4020($r0)
 jal printScreen
-
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
-	addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
 ## DEBUGGING ##
 
 ###############################################################################################
 ###############################################################################################
 gameLoop:
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r9, 4021($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -93,6 +107,18 @@ placeLoop: # loop for placing a block
 		addi $r0, $r0, 0
 
 skipIncrement:
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r9, 4022($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
 		jal placeBlock
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -148,7 +174,18 @@ readInput:
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r9, 4023($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
 	# Only reach this if r6 is NOT 0 --> has a value!
 	lw $r6, 2048($r6)
 	addi $r0, $r0, 0
@@ -163,6 +200,18 @@ readInput:
 	addi $r0, $r0, 0
 
 enterPress:
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r9, 4024($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
 	# now we test if enter has been pressed
 	# if NOT equal to 5A (enter), loop back
 	addi $r12, $r0, 90
@@ -185,6 +234,18 @@ enterPress:
 
 # test if current block is occupied. return 1,2 in $r1 if occupied, 0 if not
 testOccupied: 
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r9, 4025($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
 	# intuition: load from specified address in TABLE MAP. if 1,or 2, block is present.
 	addi $r4, $r10, 4000
 	addi $r0, $r0, 0
@@ -209,6 +270,18 @@ testOccupied:
 
 # place a block at given input from $r10. RESET input after placeBlock is called to 100
 placeBlock:
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r9, 4026($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
 	#WRITE TO ORIGINAL TABLE MAP our player 1 or 2
 	# we just previously called testOccupied, so $r4 should still be holding destination address
 	# $r9 is holding currPlayer
@@ -231,6 +304,18 @@ placeBlock:
 
 # check if game over
 checkWin:
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r9, 4027($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
 # 19,  are free temps
 # r2, 3, 5, 7, 8, 12, 13, 17, 18, 19 are temps
 addi $r5, $r0, 1   #r5 is loop, goes from 1 to 21 for vertical checks, on 22 exit.
@@ -263,6 +348,18 @@ addi $r15, $r0, 0
 	# --> translated to one dimensional loop from 1 to 21. this is the same as the two for loops above
 #	just done in one dimension by going from index 1 to index 21
 checkWinLoop0: 
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r9, 4028($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
 		addi $r19, $r5, 4000	# run1: r5=1, r19=4001, run2: r5=2, r19 = 4002, ...
 			addi $r0, $r0, 0
 			addi $r0, $r0, 0
@@ -329,6 +426,18 @@ endCheckWinLoop0:
 
 	#IDEA: Check inner FOUR iterations in an unrolled loop. Then increment by 7 again.
 checkWinLoop1:
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r9, 4029($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
 		addi $r19, $r5, 4000	# run1: r5=1, r19=4001
 		lw $r12, 0($r19)	#load i
 		lw $r13, 1($r19)	#load i	#load i+1
@@ -726,7 +835,18 @@ endCheckWinLoop1:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		or $r15, $r15, $r3
-
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r9, 4030($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
 
 	#for row = 0 to 2:
 	#    for col = 0 to 3:
