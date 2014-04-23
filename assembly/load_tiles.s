@@ -60,6 +60,19 @@ addi $r16, $r0, 1  # $r16 is always value 1. comes in handy.
 ###############################################################################################
 gameLoop:
 
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r9, 4042($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -70,7 +83,6 @@ gameLoop:
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 retMain0:
-
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -135,7 +147,6 @@ retMain3:
 		bne $r0, $r15, endGame	# if not 0, branch to endGame. $r15 is 1 or 2, so game is over!
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
-
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		# game NOT over if we reached this. Change currPlayer
@@ -145,6 +156,8 @@ retMain3:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 retMain4:
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		# keep playing the game
@@ -283,7 +296,6 @@ addi $r15, $r0, 0
 	# --> translated to one dimensional loop from 1 to 21. this is the same as the two for loops above
 #	just done in one dimension by going from index 1 to index 21
 checkWinLoop0: 
-
 		addi $r19, $r5, 4000	# run1: r5=1, r19=4001, run2: r5=2, r19 = 4002, ...
 			addi $r0, $r0, 0
 			addi $r0, $r0, 0
@@ -351,6 +363,10 @@ endCheckWinLoop0:
 	#IDEA: Check inner FOUR iterations in an unrolled loop. Then increment by 7 again.
 checkWinLoop1:
 		addi $r19, $r5, 4000	# run1: r5=1, r19=4001
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
 		lw $r12, 0($r19)	#load i
 		lw $r13, 1($r19)	#load i	#load i+1
 		lw $r17, 2($r19)	#load i	#load i+2
@@ -460,8 +476,6 @@ checkWinLoop1:
 		addi $r0, $r0, 0
 
 endCheckWinLoop1: 
-
-
 	#For right and up, followed by right and down:
 
 	#for row = 3 to 5:
@@ -1033,6 +1047,21 @@ endCheckWinLoop1:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		or $r15, $r15, $r3
+
+## DEBUGGING ##
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+sw $r16, 4035($r0)
+jal printScreen
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+addi $r0, $r0, 0
+## DEBUGGING ##
+
+
 
 		# if 0 is less than the result, the result is greater than 0
 		# if the result is greater than 0, it's either 1, or 2. 
