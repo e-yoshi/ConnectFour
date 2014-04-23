@@ -87,24 +87,13 @@ placeLoop: # loop for placing a block
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-	blt $r1, $r16, skipIncrement
+comeBack:
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
+	bne $r0, $r1, IncrementValue
 
-		addi $r10, $r10, 7 # increment input
-		addi $r0, $r0, 0
-		addi $r0, $r0, 0
-		addi $r0, $r0, 0
-		addi $r0, $r0, 0
-		j placeLoop		   # loop back, check if next block above this one is free
-		addi $r0, $r0, 0
-		addi $r0, $r0, 0
-		addi $r0, $r0, 0
-		addi $r0, $r0, 0
-
-skipIncrement:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -210,6 +199,19 @@ addi $r0, $r0, 0
 #							SUB METHODS
 ###############################################################################################
 ###############################################################################################
+IncrementValue:
+		addi $r10, $r10, 7 # increment input
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		j placeLoop		   # loop back, check if next block above this one is free
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+
+
 # Read Input from the current player, set to 1 through 7
 readInput:
 	addi $r10, $r0, 0
