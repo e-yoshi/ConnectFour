@@ -48,20 +48,6 @@ addi $r16, $r0, 1  # $r16 is always value 1. comes in handy.
 ###############################################################################################
 ###############################################################################################
 gameLoop:
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r9, 4042($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -120,33 +106,6 @@ retMain2:
 
 
 retMain3:
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r15, 4039($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4013($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
-
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		# if won, $r15 will be 1 or 2. if game NOT over, $r15 is 0
@@ -164,21 +123,6 @@ addi $r0, $r0, 0
 
 
 retMain4:
-
-## DEBUGGING ##
-addi $r11, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4028($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -1068,20 +1012,6 @@ endCheckWinLoop1:
 		addi $r0, $r0, 0
 		or $r15, $r15, $r3
 
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4035($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
-
 
 		# if 0 is less than the result, the result is greater than 0
 		# if the result is greater than 0, it's either 1, or 2. 
@@ -1114,22 +1044,6 @@ changePlayer:
 		addi $r0, $r0, 0
 		# did NOT branch here. that means current player is 1
 
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r0, 4036($r0)
-sw $r16, 4037($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
-
 		addi $r9, $r0, 2
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -1158,19 +1072,7 @@ wait0:
 		addi $r0, $r0, 0
 
 changePlayerSubLabel: 	#we just branched here because player is NOT equal to 1... player is 2. change player to 1,return
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4036($r0)
-sw $r17, 4037($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
+
 		addi $r9, $r0, 1
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -1611,19 +1513,7 @@ load_image_complete:
 
 # game is over! 
 endGame: 
-	
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4006($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
+
 
 j endGame
 addi $r0, $r0, 0
