@@ -111,7 +111,11 @@ addi $r0, $r0, 0
 ## DEBUGGING ##
 
 
-	jal testOccupied #test if current block is occupied, if occupied, return 1, or 2. if no, return 0
+	j testOccupied #test if current block is occupied, if occupied, return 1, or 2. if no, return 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
+	addi $r0, $r0, 0
 retMain1:
 #WE GOT HERE#WE GOT HERE#WE GOT HERE#WE GOT HERE#WE GOT HERE#WE GOT HERE#WE GOT HERE#
 
@@ -961,18 +965,6 @@ endCheckWinLoop1:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		or $r15, $r15, $r3
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4030($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
 
 	#for row = 0 to 2:
 	#    for col = 0 to 3:
