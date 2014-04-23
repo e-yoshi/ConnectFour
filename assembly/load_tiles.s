@@ -111,7 +111,7 @@ addi $r0, $r0, 0
 
 
 	jal testOccupied #test if current block is occupied, if occupied, return 1, or 2. if no, return 0
-
+retMain1:
 
 ## DEBUGGING ##
 addi $r0, $r0, 0
@@ -265,7 +265,7 @@ addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
 addi $r0, $r0, 0
-sw $r16, 4025($r0)
+sw $r16, 4026($r0)
 jal printScreen
 addi $r0, $r0, 0
 addi $r0, $r0, 0
@@ -288,7 +288,7 @@ addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-	jr $r31
+	j retMain1
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
