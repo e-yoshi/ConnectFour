@@ -70,20 +70,6 @@ gameLoop:
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 retMain0:
-	
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4025($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
 
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -94,33 +80,12 @@ placeLoop: # loop for placing a block
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-
-
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r9, 4041($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
-
 	j testOccupied #test if current block is occupied, if occupied, return 1, or 2. if no, return 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 retMain1:
-#WE GOT HERE#WE GOT HERE#WE GOT HERE#WE GOT HERE#WE GOT HERE#WE GOT HERE#WE GOT HERE#
-
-
-
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -130,20 +95,6 @@ retMain1:
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4038($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
 
 		addi $r10, $r10, 7 # increment input
 		addi $r11, $r11, 1 # increment numberRows
@@ -159,41 +110,12 @@ addi $r0, $r0, 0
 
 skipIncrement:
 
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4037($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
-
 		j placeBlock
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 retMain2:
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4036($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
-
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		# checkWin(User) -- pass in User as arg, returns 1 if user has won.
@@ -207,38 +129,12 @@ addi $r0, $r0, 0
 		addi $r0, $r0, 0
 retMain3:
 
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4034($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		# if won, $r15 will be 1 or 2. if game NOT over, $r15 is 0
 		bne $r0, $r15, endGame	# if not 0, branch to endGame. $r15 is 1 or 2, so game is over!
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4033($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
 
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
@@ -249,21 +145,6 @@ addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 retMain4:
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4032($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
-
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		# keep playing the game
@@ -304,31 +185,6 @@ readInput:
 	addi $r0, $r0, 0
 
 enterPress:
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r9, 4042($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r10, 4030($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
 	# now we test if enter has been pressed
 	# if NOT equal to 5A (enter), loop back
 	addi $r12, $r0, 90
@@ -349,18 +205,6 @@ addi $r0, $r0, 0
 
 # test if current block is occupied. return 1,2 in $r1 if occupied, 0 if not
 testOccupied: 
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4026($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
 	# intuition: load from specified address in TABLE MAP. if 1,or 2, block is present.
 	addi $r4, $r10, 4000
 	addi $r0, $r0, 0
@@ -377,21 +221,6 @@ addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
-
-
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4039($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
-
 	j retMain1
 	addi $r0, $r0, 0
 	addi $r0, $r0, 0
@@ -400,18 +229,6 @@ addi $r0, $r0, 0
 
 # place a block at given input from $r10. RESET input after placeBlock is called to 100
 placeBlock:
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4026($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
 	#WRITE TO ORIGINAL TABLE MAP our player 1 or 2
 	# we just previously called testOccupied, so $r4 should still be holding destination address
 	# $r9 is holding currPlayer
@@ -434,18 +251,6 @@ addi $r0, $r0, 0
 
 # check if game over
 checkWin:
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4027($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
 # 19,  are free temps
 # r2, 3, 5, 7, 8, 12, 13, 17, 18, 19 are temps
 addi $r5, $r0, 1   #r5 is loop, goes from 1 to 21 for vertical checks, on 22 exit.
@@ -478,18 +283,7 @@ addi $r15, $r0, 0
 	# --> translated to one dimensional loop from 1 to 21. this is the same as the two for loops above
 #	just done in one dimension by going from index 1 to index 21
 checkWinLoop0: 
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4028($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
+
 		addi $r19, $r5, 4000	# run1: r5=1, r19=4001, run2: r5=2, r19 = 4002, ...
 			addi $r0, $r0, 0
 			addi $r0, $r0, 0
@@ -556,18 +350,6 @@ endCheckWinLoop0:
 
 	#IDEA: Check inner FOUR iterations in an unrolled loop. Then increment by 7 again.
 checkWinLoop1:
-## DEBUGGING ##
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-sw $r16, 4029($r0)
-jal printScreen
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-addi $r0, $r0, 0
-## DEBUGGING ##
 		addi $r19, $r5, 4000	# run1: r5=1, r19=4001
 		lw $r12, 0($r19)	#load i
 		lw $r13, 1($r19)	#load i	#load i+1
@@ -1277,14 +1059,22 @@ changePlayer:
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		# did NOT branch here. that means current player is 1. change player to 2 and exit 
-		addi $r9, $r0, 2
+		addi $r9, $r0, 1
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
 		jr $r31 #jr return register
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
-	changePlayerSubLabel: 	#we just branched here because player is NOT equal to 1... player is 2. change player to 1,return
-		addi $r9, $r0, 1
+changePlayerSubLabel: 	#we just branched here because player is NOT equal to 1... player is 2. change player to 1,return
+		addi $r9, $r0, 2
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
+		addi $r0, $r0, 0
 		j retMain4
 		addi $r0, $r0, 0
 		addi $r0, $r0, 0
